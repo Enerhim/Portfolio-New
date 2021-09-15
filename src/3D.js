@@ -2,18 +2,6 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
 
 const camera, scene, renderer;
 
-manager = new THREE.LoadingManager();
-
-manager.onProgress = function(item, loaded, total) {
-    console.log(item, loaded, total);
-};
-manager.onLoad = function() {
-    console.log('all items loaded');
-};
-manager.onError = function() {
-    console.log('there has been an error');
-};
-
 init();
 animate();
 
