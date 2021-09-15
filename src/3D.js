@@ -1,6 +1,8 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
 
-const camera, scene, renderer;
+var camera, scene, renderer;
+
+var dodecahedron;
 
 init();
 animate();
@@ -16,7 +18,7 @@ function init() {
     const material = new THREE.MeshStandardMaterial({ color: 0x007bff, wireframe: false });
 
     const dodecahedronGeo = new THREE.DodecahedronGeometry(10);
-    const dodecahedron = new THREE.Mesh(dodecahedronGeo, material);
+    dodecahedron = new THREE.Mesh(dodecahedronGeo, material);
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
