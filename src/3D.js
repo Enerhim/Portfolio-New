@@ -1,7 +1,6 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
 
 var camera, scene, renderer;
-
 var dodecahedron;
 
 init();
@@ -34,15 +33,6 @@ function init() {
     scene.add(dodecahedron);
     scene.add(pointLight, pointLight2);
     renderer.setClearColor(0x001a3d, 1);
-}
-
-
-function onWindowResize() {
-
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
 }
 
 function animate() {
