@@ -35,6 +35,17 @@ function init() {
     renderer.setClearColor(0x001a3d, 1);
 }
 
+window.addEventListener('resize', onWindowResize, false);
+
+function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+}
+
 function animate() {
     requestAnimationFrame(animate);
 
