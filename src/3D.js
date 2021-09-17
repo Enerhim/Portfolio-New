@@ -23,8 +23,6 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     camera.position.setZ(30);
-
-
     const pointLight = new THREE.PointLight(0xffffff);
     const pointLight2 = new THREE.PointLight(0xffffff);
     pointLight.position.set(30, 30, 5)
@@ -36,6 +34,27 @@ function init() {
 }
 
 window.addEventListener('resize', onWindowResize, false);
+window.addEventListener("mousemove", onmousemove, false);
+
+var plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // it's up to you how you will create THREE.Plane(), there are several methods
+var raycaster = new THREE.Raycaster(); //for reuse
+var mouse = new THREE.Vector2(); //for reuse
+var intersectPoint = new THREE.Vector3(); //for reuse
+
+function onmousemove(event) {
+    //get mouse coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera); //set raycaster
+    raycaster.ray.intersectPlane(plane, intersectPoint); // find the point of intersection
+    dodecahedron.lookAt(intersectPoint); // face our arrow to this point
+
+    dodecahedron.position.x += mouse.x * 0.2;
+    dodecahedron.position.y += mouse.y * 0.2;
+
+    dodecahedron.rotation.z = mouse.x - mouse.y;
+}
 
 function onWindowResize() {
 
@@ -48,9 +67,5 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-
-    dodecahedron.rotation.x += 0.01;
-    dodecahedron.rotation.y += 0.005;
-
     renderer.render(scene, camera);
 }
