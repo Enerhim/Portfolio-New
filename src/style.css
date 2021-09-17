@@ -10,6 +10,7 @@ body {
     padding: 0;
     margin: 0;
     scroll-behavior: smooth;
+    background-color: #001a3d;
 }
 
 body::-webkit-scrollbar {
@@ -21,11 +22,18 @@ body {
     scrollbar-width: none;
 }
 
+a {
+    text-decoration: none;
+}
+
+
+/* Header Section ===============================================*/
+
 canvas {
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: -5000;
+    z-index: 0;
 }
 
 main {
@@ -60,16 +68,26 @@ hr {
     font-size: 50px;
     font-weight: bold;
     color: white;
-    text-decoration: none;
     text-align: center;
 }
+
+
+/* Projects Section  ===============================================*/
 
 .projects {
     position: absolute;
     top: 100%;
     width: 100%;
+    height: 100%;
     background: rgb(0, 155, 255);
     color: white;
+}
+
+.project-list {
+    display: grid;
+    grid-row-gap: 50px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
 .projects-title {
@@ -78,6 +96,76 @@ hr {
     font-size: 50px;
     font-weight: bold;
     margin-top: 120px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px 10px 10px 10px;
+    border-radius: 10%;
+}
+
+.view-button {
+    border: none;
+    background-color: rgb(0, 111, 185);
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.project-image {
+    border-radius: 10%;
+    float: left;
+    width: 350px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-title {
+    margin-bottom: 20px;
+    margin-top: 220px;
+    color: white;
+}
+
+
+/* Contact Section  ===============================================*/
+
+.contact {
+    position: absolute;
+    top: 120em;
+    width: 100%;
+    height: 50%;
+    background: rgb(20, 255, 145);
+    color: white;
+}
+
+
+/* Waves */
+
+.wave2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave2 svg {
+    position: relative;
+    display: block;
+    width: calc(200%);
+    height: 120px;
+    transform: rotateY(180deg);
+}
+
+.wave2 .shape-fill {
+    fill: rgb(0, 155, 255);
 }
 
 .wave {
@@ -101,12 +189,63 @@ hr {
     fill: #001A3D;
 }
 
-.project-list {
-    display: grid;
-    grid-row-gap: 50px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+
+/* Modals =============================================*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
+.modal-content {
+    position: relative;
+    background-color: #001A3D;
+    color: white;
+    margin: auto;
+    padding: 10px 0px 20px 30px;
+    top: 20%;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    margin-right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes animatetop {
+    from {
+        top: -100px;
+        opacity: 0
+    }
+    to {
+        top: 20%;
+        opacity: 1
+    }
+}
+
+
+/* Media Queries =============================================== */
 
 @media only screen and (max-width: 600px) {
     .project-list {
@@ -121,6 +260,9 @@ hr {
         width: calc(100% + 1.3px);
         height: 50px;
         transform: rotateY(180deg);
+    }
+    .contact {
+        top: 250em;
     }
 }
 
@@ -138,6 +280,9 @@ hr {
         height: 90px;
         transform: rotateY(180deg);
     }
+    .contact {
+        top: 250em;
+    }
 }
 
 @media only screen and (min-width: 992px) {
@@ -153,6 +298,9 @@ hr {
         width: calc(100% + 1.3px);
         height: 120px;
         transform: rotateY(180deg);
+    }
+    .contact {
+        top: 160em;
     }
 }
 
@@ -170,28 +318,7 @@ hr {
         height: 120px;
         transform: rotateY(180deg);
     }
-}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 350px;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 10px 10px 10px 10px;
-    border-radius: 10%;
-}
-
-.project-image {
-    border-radius: 10%;
-    float: left;
-    width: 350px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.project-title {
-    margin-bottom: 0px;
-    margin-top: 220px;
+    .contact {
+        top: 120em;
+    }
 }
